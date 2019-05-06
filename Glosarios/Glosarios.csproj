@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <UserSecretsId>aspnet-Glosarios-22D63929-DBC6-47E9-81BC-71F9E90A8C69</UserSecretsId>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App"  />
+    
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" PrivateAssets="All" />
+  </ItemGroup>
+
+ 
+
+  <ItemGroup>
+    <None Include="ClasesPablo\ListedMnemonicSummaries\ListedMnemonicSummaries.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClasesPablo\ListedMnemonicSummaries\bin\Release\" />
+  </ItemGroup>
+
+</Project>
