@@ -157,7 +157,7 @@
             <div class="col-lg-6">
                 <form id="form_58909" class="appnitro" method="post" action="">
                     <div class="form_description">
-                        
+
                         <p>Ingrese el concepto a agregar</p>
                     </div>
                     <label class="description" for="element_1">Nombre del glosario</label>
@@ -167,20 +167,42 @@
 
                     <label class="description" for="element_2">Escriba el concepto a agregar</label>
                     <div>
-                        <input id="element_2" name="element_2" class="element text large" type="text" size="90" maxlength="989546" value=""  />
+                        <input id="element_2" name="element_2" class="element text large" type="text" size="90" maxlength="989546" value="" />
+                    </div>
+                    <!-- -->
+                    <div class="tab">
+                        <button class="tablinks" onclick="openCity(event, 'London')">London</button>
+                        <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+                        <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+                    </div>
+
+                    <!-- Tab content -->
+                    <div id="London" class="tabcontent">
+                        <h3>London</h3>
+                        <p>London is the capital city of England.</p>
+                    </div>
+
+                    <div id="Paris" class="tabcontent">
+                        <h3>Paris</h3>
+                        <p>Paris is the capital of France.</p>
+                    </div>
+
+                    <div id="Tokyo" class="tabcontent">
+                        <h3>Tokyo</h3>
+                        <p>Tokyo is the capital of Japan.</p>
                     </div>
                     <label class="description" for="element_3">Entrada</label>
                     <div>
-                        <textarea id="texto" name="texto" cols="90" ></textarea>
+                        <textarea id="texto" name="texto" cols="90"></textarea>
                     </div>
                     <label class="description" for="element_3">Salida </label>
                     <div>
                         <textarea id="textoSalida" name="textoSalida" cols="90"></textarea>
                     </div>
-                   
+
 
                     <input type="hidden" name="form_id" value="58909" />
-                    <button type="button" class="btn btn-primary" onclick="Glosario('Usuarios/Rewrite')">Procesar</button>
+                    <button type="button" class="btn btn-primary" onclick="Glosario('Rewrite')">Procesar</button>
 
                 </form>
             </div>
