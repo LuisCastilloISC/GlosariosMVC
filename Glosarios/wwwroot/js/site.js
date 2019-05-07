@@ -25,6 +25,7 @@ var CApellidoMat;
 var CNickname;
 var CPassword;
 var CCorreo;
+var NicknameLogueado;
 function CrearUsuario(action) {
     CCorreo = document.getElementById("CCorreo").value;
     CNombre = document.getElementById("CNombre").value;
@@ -60,6 +61,7 @@ function Loguear(action) {
         success: function (response) {
             if (response != "") {
                 window.open("Resumenes");
+                NicknameLogueado = response;
             }
             else {
                 alert("No se puede iniciar sesion verifique sus datos");
@@ -67,3 +69,4 @@ function Loguear(action) {
         }
     });
 }
+

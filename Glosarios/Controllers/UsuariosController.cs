@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,151 +7,104 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Glosarios.Data;
 using Glosarios.Models;
+using Microsoft.AspNetCore.Identity;
+using System.Data.Sql;
+using System.Data.SqlClient;
 using ListedMnemonicSummaries;
-
 
 namespace Glosarios.Controllers
 {
     public class UsuariosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        UserManager<ApplicationUser> _userManager;
+        SignInManager<ApplicationUser> _signInManager;
+        ApplicationUser miUsuario;
+        public static string  NickOn ="";
 
-        public UsuariosController(ApplicationDbContext context)
+        public UsuariosController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
+
         }
 
-        // GET: Usuarios
+        // GET: Usuarios1
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ApplicationUser.ToListAsync());
+            return View(await _context.Usuario.ToListAsync());
         }
 
-        // GET: Usuarios/Details/5
-        public async Task<IActionResult> Details(string id)
+        public async Task<string> Loguear(string CCorreo, string CPassword)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var applicationUser = await _context.ApplicationUser
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (applicationUser == null)
+            miUsuario = new ApplicationUser
             {
-                return NotFound();
+                Email = CCorreo,
+                Password = CPassword
+            };
+            var nickname = "";
+            SqlConnection conexion = new SqlConnection("Data Source=CASTILLOW10\\KINGBRADLEY;Database=Glosarios;Trusted_Connection=True;MultipleActiveResultSets=true");
+            using (conexion)
+            {
+                conexion.Open();
+                var sql = @"select NickName from AspNetUsers Where Email= '" + miUsuario.Email + "' AND Password ='" + miUsuario.Password + "'";
+                SqlCommand cmd = new SqlCommand(sql, conexion);
+                SqlDataReader rd = cmd.ExecuteReader();
+                if(rd.Read())
+                {
+                    nickname = rd[0].ToString();
+                    NickOn = nickname;
+                }
             }
+            
+            return nickname;
 
-            return View(applicationUser);
         }
-
-        // GET: Usuarios/Create
-        public IActionResult Create()
+        public IActionResult Crear()
         {
             return View();
         }
-
-        // POST: Usuarios/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("idUsuario,Nombre,ApellidoMaterno,ApellidoPaterno,NickName,Password,status,Id,UserName,NormalizedUserName,Email,NormalizedEmail,EmailConfirmed,PasswordHash,SecurityStamp,ConcurrencyStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnd,LockoutEnabled,AccessFailedCount")] ApplicationUser applicationUser)
+        public IActionResult Resumenes()
         {
-            if (ModelState.IsValid)
+            return View();
+        }
+        public IActionResult Login()
+        {
+            return View();
+        }
+        public async Task<String> CrearUsuario(string CCorreo, string CNombre,
+             string CApellidoPat, string CApellidoMat,
+             string CNickname, string CPassword)
+        {
+
+
+            miUsuario = new ApplicationUser
             {
-                _context.Add(applicationUser);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                Email = CCorreo,
+                Nombre = CNombre,
+                ApellidoPaterno = CApellidoPat,
+                ApellidoMaterno = CApellidoMat,
+                NickName = CNickname,
+                UserName = CNickname,
+                Password = CPassword
+            };
+            var resp = "";
+            var result = await _userManager.CreateAsync(miUsuario, miUsuario.Password);
+            if (result.Succeeded)
+            {
+                resp = "Save";
             }
-            return View(applicationUser);
+            else
+            {
+                resp = "NoSave";
+            }
+            return resp;
+
         }
 
-        // GET: Usuarios/Edit/5
-        public async Task<IActionResult> Edit(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var applicationUser = await _context.ApplicationUser.SingleOrDefaultAsync(m => m.Id == id);
-            if (applicationUser == null)
-            {
-                return NotFound();
-            }
-            return View(applicationUser);
-        }
-
-        // POST: Usuarios/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("idUsuario,Nombre,ApellidoMaterno,ApellidoPaterno,NickName,Password,status,Id,UserName,NormalizedUserName,Email,NormalizedEmail,EmailConfirmed,PasswordHash,SecurityStamp,ConcurrencyStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnd,LockoutEnabled,AccessFailedCount")] ApplicationUser applicationUser)
-        {
-            if (id != applicationUser.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(applicationUser);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ApplicationUserExists(applicationUser.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(applicationUser);
-        }
-
-        // GET: Usuarios/Delete/5
-        public async Task<IActionResult> Delete(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var applicationUser = await _context.ApplicationUser
-                .SingleOrDefaultAsync(m => m.Id == id);
-            if (applicationUser == null)
-            {
-                return NotFound();
-            }
-
-            return View(applicationUser);
-        }
-
-        // POST: Usuarios/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            var applicationUser = await _context.ApplicationUser.SingleOrDefaultAsync(m => m.Id == id);
-            _context.ApplicationUser.Remove(applicationUser);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool ApplicationUserExists(string id)
-        {
-            return _context.ApplicationUser.Any(e => e.Id == id);
-        }
-        //rewriter
+        //Rewriter
         public string Rewrite(string strText, string strLanguage)
         {
             string strRewrited;
@@ -170,13 +123,13 @@ namespace Glosarios.Controllers
             }
             return strRewrited;
         }
-        public  string Polish(string strText)
+        public string Polish(string strText)
         {
             string strRewrited = strText.Replace("  ", " ");
             strRewrited = strRewrited.Trim();
             return ConvertForCapitalization(strRewrited, '.'); ;
         }
-        public  List<string> CapitalizeSentences(List<string> cSentences)
+        public List<string> CapitalizeSentences(List<string> cSentences)
         {
             List<string> capitalizedSentences = new List<string>();
             foreach (string strString in cSentences)
@@ -232,9 +185,5 @@ namespace Glosarios.Controllers
         }
 
     }
-    //LanguajeFileManager
-    
+
 }
- 
-
-
