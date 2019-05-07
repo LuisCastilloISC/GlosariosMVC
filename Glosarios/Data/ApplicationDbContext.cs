@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,5 +24,7 @@ namespace Glosarios.Data
         }
 
         public DbSet<Glosarios.Models.ApplicationUser> ApplicationUser { get; set; }
+
+        public DbSet<Glosarios.Models.Usuario> Usuario { get; set; }
     }
 }

@@ -7,5 +7,10 @@ namespace Glosarios.Models
 {
     public class Archivos
     {
+        public int idArchivo { get; set; }
+        public string direccion { get; set; }
+        public int idUsuario { get; set; }
+        public string nombreDoc { get; set; }
+        public string fecha { get; set; }
     }
 }
