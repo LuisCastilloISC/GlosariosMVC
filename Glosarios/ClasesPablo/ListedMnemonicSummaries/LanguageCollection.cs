@@ -26,8 +26,12 @@ namespace ListedMnemonicSummaries
             Reemplazables.Add(new Replaceable(" sin embargo, ", " pero, "));
             Reemplazables.Add(new Replaceable(" sin embargo ", " pero "));
             Reemplazables.Add(new Replaceable(" no obstante ", " pero "));
-            //
-            //Replaceables
+            Reemplazables.Add(new Replaceable(" todos y cada uno ", " *&c/u "));
+            Reemplazables.Add(new Replaceable(" cada uno ", " * c/u "));
+            Reemplazables.Add(new Replaceable(" con el propósito de ", " para "));
+
+        //
+        //Replaceables
             Reemplazables.Add(new Replaceable(" arriba ", " ↑ "));
             Reemplazables.Add(new Replaceable(" abajo ", " ↓ ")); //bajo
             Reemplazables.Add(new Replaceable(" bajo ", " ↓ "));
@@ -56,6 +60,8 @@ namespace ListedMnemonicSummaries
             Reemplazables.Add(new Replaceable(" ese "));
             Reemplazables.Add(new Replaceable(" esta "));
             Reemplazables.Add(new Replaceable(" este "));
+            Reemplazables.Add(new Replaceable(" fue "));
+            Reemplazables.Add(new Replaceable(" ha "));
             Reemplazables.Add(new Replaceable(" hay "));
             Reemplazables.Add(new Replaceable(" que "));
             Reemplazables.Add(new Replaceable(" la "));
@@ -77,15 +83,24 @@ namespace ListedMnemonicSummaries
             Reemplazables.Add(new Replaceable(" un "));
             Reemplazables.Add(new Replaceable(" una "));
             Reemplazables.Add(new Replaceable(" va "));
+            Reemplazables.Add(new Replaceable(" así mismo"));
             //
             //Right Sided Replaceables
             Reemplazables.Add(new Replaceable(" siempre ", " ∞")); //∞
+            Reemplazables.Add(new Replaceable(" toda ", " *")); //∞
+            Reemplazables.Add(new Replaceable(" todos ", " *")); //∞
             Reemplazables.Add(new Replaceable(" entre otros", " etc")); 
-            Reemplazables.Add(new Replaceable(" etcétera", " etc")); 
+            Reemplazables.Add(new Replaceable(" etcétera", " etc"));
+            Reemplazables.Add(new Replaceable(" aumento ", " ++"));
+            Reemplazables.Add(new Replaceable(" incremento ", " ++"));
+            Reemplazables.Add(new Replaceable(" decremento ", " --"));
+            Reemplazables.Add(new Replaceable(" disminución ", " --"));
+
             //
             //Joining Replaceables "Joinables" "Space Deletion Replaceables"            
             Reemplazables.Add(new Replaceable(" y/o ", "&/"));
             Reemplazables.Add(new Replaceable(" y ", "&"));
+            Reemplazables.Add(new Replaceable(" e ", "&"));
             Reemplazables.Add(new Replaceable(" o ", "/"));
             Reemplazables.Add(new Replaceable(" u ", "/"));
             Reemplazables.Add(new Replaceable(" por ", "×"));
@@ -101,7 +116,7 @@ namespace ListedMnemonicSummaries
             Reemplazables.Add(new Replaceable(" idéntico ", "="));
             Reemplazables.Add(new Replaceable(" idéntica ", "="));
             Reemplazables.Add(new Replaceable(" sin ", "-"));
-            Reemplazables.Add(new Replaceable(" menos ", "-"));
+            Reemplazables.Add(new Replaceable(" menos ", "-"));            
 
             Language español = new Language(strNombre, Reemplazables, strPrueba);            
             return español;
@@ -140,6 +155,7 @@ namespace ListedMnemonicSummaries
             Replaceables.Add(new Replaceable(" that "));
             Replaceables.Add(new Replaceable(" the "));          
             Replaceables.Add(new Replaceable(" thing "));
+            Replaceables.Add(new Replaceable(" was "));
 
             //Left Sided Replaceables            
             Replaceables.Add(new Replaceable(" and ", "&"));            

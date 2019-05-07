@@ -47,8 +47,18 @@ namespace ListedMnemonicSummaries
                     }
                     break;
             }
+        }
 
-            
+        public static string Read(string fullPath)
+        {
+            string text = "";
+            TextFile lmnsTopic;                        
+            if (File.Exists(fullPath))
+            {
+                lmnsTopic = new TextFile(fullPath);
+                text = lmnsTopic.Read();
+            }
+            return text;
         }
     }
 }

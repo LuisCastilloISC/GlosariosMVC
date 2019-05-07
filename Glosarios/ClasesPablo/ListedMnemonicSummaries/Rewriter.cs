@@ -3,24 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 
 namespace ListedMnemonicSummaries
 {
-    public  class Rewriter
+    public abstract class Rewriter
     {
-       
-        public string Rewrite(string strText, string strLanguage)
+        public static string Rewrite(string strText, string strLanguage)
         {
             string strRewrited;
             Language aLanguage;
             aLanguage = LanguageFileManager.LoadLanguage(strLanguage);
 
             if (strText == "")              
-               strRewrited = Rewrite(aLanguage.TestString, strLanguage);            
+                strRewrited = Rewrite(aLanguage.TestString, strLanguage);            
             else
             {
                 strRewrited = strText.TrimStart();
