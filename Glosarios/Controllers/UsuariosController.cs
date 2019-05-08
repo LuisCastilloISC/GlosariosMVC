@@ -106,14 +106,14 @@ namespace Glosarios.Controllers
         }
 
         //Rewriter
-        public string Rewrite(string strText, string strLanguage)
+        public string Rewrite(string strText, string strLanguage,string strConcepto)
         {
             string strRewrited;
             Language aLanguage;
             aLanguage = LanguageFileManager.LoadLanguage(strLanguage);
 
             if (strText == "")
-                strRewrited = Rewrite(aLanguage.TestString, strLanguage);
+                strRewrited = Rewrite(aLanguage.TestString, strLanguage,"");
             else
             {
                 strRewrited = strText.TrimStart();
@@ -122,7 +122,7 @@ namespace Glosarios.Controllers
                     strRewrited = strRewrited.Replace(aReplaceable.Original, aReplaceable.Summarized);
                 strRewrited = Polish(strRewrited);
             }
-            return strRewrited;
+            return strConcepto.ToUpper()+".\n"+strRewrited;
         }
         public string Polish(string strText)
         {
@@ -235,7 +235,9 @@ namespace Glosarios.Controllers
                     blnAtBeggining = System.IO.File.Exists(strTopic + ".txt");
                     lmnsTopic = new TextFile(strTopic + ".txt");
                     if (blnAtBeggining)
+                    {                        
                         lmnsTopic.Write(strConceptAndText);
+                    }
                     else
                     {
                         lmnsTopic.Write("Listed Mnemonic Summary Designer by Pablo Lavín, 2019.");

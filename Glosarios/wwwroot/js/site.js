@@ -1,15 +1,23 @@
 ﻿function Glosario(action) {
     var strText = document.getElementById("texto").value;
     var strLanguage = "Español";
+    var strConcepto = document.getElementById("Concepto").value;
+        
     $.ajax({
         type: "POST",
         url: action,
         data: {
-            strText, strLanguage
+            strText, strLanguage, strConcepto
         },
         success: function (response) {
             if (response != "") {
-                document.getElementById("textoSalida").value = response;
+                if (document.getElementById("textoSalida").value != "") {
+
+                    document.getElementById("textoSalida").value = document.getElementById("textoSalida").value+".\n" + response;
+                }
+                else {
+                    document.getElementById("textoSalida").value = response;
+                }
                 
             }
             else {
@@ -75,6 +83,10 @@ function PDF(action) {
     strTopic = document.getElementById("RNombre").value;
     strLanguage = "Español";
     var strText = document.getElementById("textoSalida").value;
+    if (strTopic == "") {
+        alert("El glosario debe tener un nombre");
+        return;
+    }
     if (strText == "") {
         alert("Genere el resumen primero");
         return;
