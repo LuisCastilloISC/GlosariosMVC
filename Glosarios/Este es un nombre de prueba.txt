@@ -1,0 +1,9 @@
+Diseñador de Resumen Mnemotécnico Listado por Pablo Lavín, 2019.
+Fecha: 2019-05-07
+Autor: siul_
+Tema: ESTE ES UN NOMBRE DE PRUEBA
+
+PRUEBA.
+Yo soy prueba&soy > no prueba.
+NO SOY LA PRUEBA.
+Yo soy no prueba&soy < prueba

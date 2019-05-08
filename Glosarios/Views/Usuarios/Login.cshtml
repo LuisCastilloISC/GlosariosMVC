@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Crear usuario</h2>
+<h2>Inicio de sesion</h2>
 
 <div class="row">
     <div class="col-md-4">
@@ -16,12 +16,12 @@
             </div>
             <div class="form-group">
                 <label for="LPassword" class="control-label">Password</label>
-                <input name="LPassword" id="LPassword" class="form-control" />
+                <input name="LPassword" type ="password" id="LPassword" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
 
             <div class="form-group">
-                <button type="button" value="Entrar" class="btn btn-default" onclick="Loguear('Loguear')">Log in</button>
+                <button type="button" value="Entrar" class="btn btn-default" onclick="Loguear('Loguear')">Iniciar sesion</button>
             </div>
         </form>
     </div>

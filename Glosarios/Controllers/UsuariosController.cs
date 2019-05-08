@@ -75,7 +75,7 @@ namespace Glosarios.Controllers
         {
             return View();
         }
-        public async Task<String> CrearUsuario(string CCorreo, string CNombre,
+        public async Task<String> CrearUsuarios(string CCorreo, string CNombre,
              string CApellidoPat, string CApellidoMat,
              string CNickname, string CPassword)
         {
@@ -193,7 +193,7 @@ namespace Glosarios.Controllers
            
             string strTXTDirectory = "";
             string strPDFDirectory = "";
-            crear(strTopic, strText, strLanguage);
+            CrearPDF(strTopic, strText, strLanguage);
             switch (strLanguage)
             {
                 case "Español":
@@ -224,7 +224,7 @@ namespace Glosarios.Controllers
                 aDocument.Add(new iTextSharp.text.Paragraph(ListedTextFileManager.Read(strTXTDirectory)));
             }
         }
-        public void crear(string strTopic, string strConceptAndText, string strLanguage)
+        public void CrearPDF(string strTopic, string strConceptAndText, string strLanguage)
         {
             bool blnAtBeggining;
             TextFile lmnsTopic;
