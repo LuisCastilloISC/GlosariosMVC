@@ -43,14 +43,12 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a   asp-area="" asp-controller="Usuarios" asp-action="Index" class="navbar-brand">Glosarios Mnemotecnicos</a>
+                        <a   asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Glosarios Mnemotecnicos</a>
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                         
-                            <li><a  class="menu_text"  asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                            <li><a class="menu_text" asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                            <li><a class="menu_text" asp-area="" asp-controller="Usuarios" asp-action="Index">Usuarios</a></li>
+                            
                         </ul>
                         @await Html.PartialAsync("_LoginPartial")
                     </div>

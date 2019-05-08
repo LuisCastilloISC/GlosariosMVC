@@ -49,7 +49,7 @@ function CrearUsuario(action) {
         },
         success: function (response) {
             if (response === "Save") {
-                window.location.href = "Usuarios";
+                window.location.href = "Loguin";
             }
             else {
                 alert("No se puede agregar el usuario");
@@ -68,7 +68,7 @@ function Loguear(action) {
         },
         success: function (response) {
             if (response != "") {
-                window.open("Resumenes");
+                window.location.replace ("https://localhost:44381");
                 NicknameLogueado = response;
             }
             else {

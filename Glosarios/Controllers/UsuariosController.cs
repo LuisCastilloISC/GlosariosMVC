@@ -12,6 +12,7 @@ using System.Data.Sql;
 using System.Data.SqlClient;
 using ListedMnemonicSummaries;
 using System.IO;
+using Tesseract;
 
 namespace Glosarios.Controllers
 {
@@ -75,7 +76,7 @@ namespace Glosarios.Controllers
         {
             return View();
         }
-        public async Task<String> CrearUsuarios(string CCorreo, string CNombre,
+        public async Task<String> CrearUsuario(string CCorreo, string CNombre,
              string CApellidoPat, string CApellidoMat,
              string CNickname, string CPassword)
         {

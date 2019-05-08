@@ -5,6 +5,16 @@
     <UserSecretsId>aspnet-Glosarios-22D63929-DBC6-47E9-81BC-71F9E90A8C69</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Views\Usuarios\img\favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Views\Usuarios\img\favicon.ico">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
