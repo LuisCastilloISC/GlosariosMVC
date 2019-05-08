@@ -122,7 +122,7 @@ namespace Glosarios.Controllers
                     strRewrited = strRewrited.Replace(aReplaceable.Original, aReplaceable.Summarized);
                 strRewrited = Polish(strRewrited);
             }
-            return strConcepto.ToUpper()+".\n"+strRewrited;
+            return strConcepto.ToUpper()+"."+strRewrited;
         }
         public string Polish(string strText)
         {
@@ -240,7 +240,7 @@ namespace Glosarios.Controllers
                     }
                     else
                     {
-                        lmnsTopic.Write("Listed Mnemonic Summary Designer by Pablo Lavín, 2019.");
+                        lmnsTopic.Write("Mnemonic Glossary Designer, 2019.");
                         lmnsTopic.Write("Date: " + DateTime.Now.ToShortDateString());
                         lmnsTopic.Write("Author: " + Environment.UserName);
                         lmnsTopic.Write("Topic: " + strTopic.ToUpper());
@@ -255,7 +255,7 @@ namespace Glosarios.Controllers
                         lmnsTopic.Write(strConceptAndText);
                     else
                     {
-                        lmnsTopic.Write("Diseñador de Resumen Mnemotécnico Listado por Pablo Lavín, 2019.");
+                        lmnsTopic.Write("Diseñador de Glosarios Mnemotécnicos, 2019.");
                         lmnsTopic.Write("Fecha: " + DateTime.Now.ToShortDateString());
                         lmnsTopic.Write("Autor: " + Environment.UserName);
                         lmnsTopic.Write("Tema: " + strTopic.ToUpper());
