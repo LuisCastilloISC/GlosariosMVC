@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using ListedMnemonicSummaries;
+using System.IO;
 
 namespace Glosarios.Controllers
 {
@@ -184,6 +185,84 @@ namespace Glosarios.Controllers
             return strRewrited;
         }
 
+    
+
+    //PDF
+    public  void PDF(string strTopic,string strLanguage,string strText)
+        {
+           
+            string strTXTDirectory = "";
+            string strPDFDirectory = "";
+            crear(strTopic, strText, strLanguage);
+            switch (strLanguage)
+            {
+                case "Español":
+                    if (System.IO.File.Exists( strTopic + ".txt"))
+                    {
+                        strTXTDirectory =  strTopic + ".txt";
+                        strPDFDirectory =  strTopic + ".pdf";
+                    }
+                    else
+                        throw new Exception(strTopic + ".txt no existe.");
+                    break;
+                default:
+                case "English":
+                    if (System.IO.File.Exists(@"Listed Mnemonic Summaries\" + strTopic + ".txt"))
+                    {
+                        strTXTDirectory = @"Listed Mnemonic Summaries\" + strTopic + ".txt";
+                        strPDFDirectory = @"Listed Mnemonic Summaries\" + strTopic + ".pdf";
+                    }
+                    else
+                        throw new Exception(strTopic + ".txt doesn't exist.");
+                    break;
+            }
+
+            using (iTextSharp.text.Document aDocument = new iTextSharp.text.Document())
+            {
+                iTextSharp.text.pdf.PdfWriter.GetInstance(aDocument, new System.IO.FileStream(strPDFDirectory, System.IO.FileMode.OpenOrCreate, System.IO.FileAccess.ReadWrite));
+                aDocument.Open();
+                aDocument.Add(new iTextSharp.text.Paragraph(ListedTextFileManager.Read(strTXTDirectory)));
+            }
+        }
+        public void crear(string strTopic, string strConceptAndText, string strLanguage)
+        {
+            bool blnAtBeggining;
+            TextFile lmnsTopic;
+            switch (strLanguage)
+            {
+                default:
+                case "English":
+                    blnAtBeggining = System.IO.File.Exists(strTopic + ".txt");
+                    lmnsTopic = new TextFile(strTopic + ".txt");
+                    if (blnAtBeggining)
+                        lmnsTopic.Write(strConceptAndText);
+                    else
+                    {
+                        lmnsTopic.Write("Listed Mnemonic Summary Designer by Pablo Lavín, 2019.");
+                        lmnsTopic.Write("Date: " + DateTime.Now.ToShortDateString());
+                        lmnsTopic.Write("Author: " + Environment.UserName);
+                        lmnsTopic.Write("Topic: " + strTopic.ToUpper());
+                        lmnsTopic.Write("");
+                        lmnsTopic.Write(strConceptAndText);
+                    }
+                    break;
+                case "Español":
+                    blnAtBeggining = System.IO.File.Exists(strTopic + ".txt");
+                    lmnsTopic = new TextFile(strTopic + ".txt");
+                    if (blnAtBeggining)
+                        lmnsTopic.Write(strConceptAndText);
+                    else
+                    {
+                        lmnsTopic.Write("Diseñador de Resumen Mnemotécnico Listado por Pablo Lavín, 2019.");
+                        lmnsTopic.Write("Fecha: " + DateTime.Now.ToShortDateString());
+                        lmnsTopic.Write("Autor: " + Environment.UserName);
+                        lmnsTopic.Write("Tema: " + strTopic.ToUpper());
+                        lmnsTopic.Write("");
+                        lmnsTopic.Write(strConceptAndText);
+                    }
+                    break;
+            }
+        }
     }
 
 }

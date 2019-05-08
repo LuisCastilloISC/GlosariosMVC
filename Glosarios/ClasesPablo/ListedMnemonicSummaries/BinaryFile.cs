@@ -31,8 +31,8 @@ namespace ListedMnemonicSummaries
         }
 
         public void Create()
-        {            
-            _bfFormatter = new BinaryFormatter();            
+        {
+            _bfFormatter = new BinaryFormatter();
             _fsStream = new FileStream(FileName, FileMode.Create);
         }
 
@@ -49,7 +49,7 @@ namespace ListedMnemonicSummaries
             if (File.Exists(FileName))
                 _fsStream = new FileStream(FileName, FileMode.Open);
             else
-                throw new Exception("This file doesn't exist." + "\n" + FileName);            
+                throw new Exception("This file doesn't exist." + "\n" + FileName);
             _bfFormatter = new BinaryFormatter();
         }
 
@@ -58,7 +58,7 @@ namespace ListedMnemonicSummaries
             if (File.Exists(FileName))
                 _fsStream = new FileStream(FileName, FileMode.Open, FileAccess.ReadWrite);
             else
-                Create();            
+                Create();
             _bfFormatter = new BinaryFormatter();
         }
 
@@ -70,7 +70,7 @@ namespace ListedMnemonicSummaries
 
         public Type ReadObject()
         {
-            _bfFormatter = new BinaryFormatter();                       
+            _bfFormatter = new BinaryFormatter();
             Type anObject = (Type)_bfFormatter.Deserialize(_fsStream);
             return anObject;
         }

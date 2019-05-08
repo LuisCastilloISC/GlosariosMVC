@@ -10,7 +10,7 @@ namespace ListedMnemonicSummaries
     {
         public static void SaveLanguage(string strName)
         {
-            BinaryFile<Language> file = new BinaryFile<Language>(@"Syntax\" + strName + ".synx");
+            BinaryFile<Language> file = new BinaryFile<Language>(strName + ".synx");
             file.Close();
             file.OpenInReadWriteMode();
             switch (strName)
@@ -22,13 +22,15 @@ namespace ListedMnemonicSummaries
         }
 
         public static Language LoadLanguage(string strName)
-        {            
-            BinaryFile<Language> file = new BinaryFile<Language>(@"Syntax\" + strName + ".synx");
-            file.Close();
-            file.OpenInReadMode();
-            Language aLanguage = file.ReadObject();
-            file.Close();
-            return aLanguage;            
+        {
+            //BinaryFile<Language> file = new BinaryFile<Language>(strName + ".synx");
+            //file.Close();
+            //file.OpenInReadMode();
+            //Language aLanguage = file.ReadObject();
+            //file.Close();
+            Language miLanguaje = LanguageCollection.Español();
+            return miLanguaje;
+                       
         }
 
     }

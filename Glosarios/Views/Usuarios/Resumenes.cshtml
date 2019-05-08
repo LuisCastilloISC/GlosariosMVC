@@ -15,7 +15,7 @@
                     </div>
                     <label class="description" for="element_1">Nombre del glosario</label>
                     <div>
-                        <input id="element_1" name="element_1" class="element text large" type="text" size="90" maxlength="989546" value="" />
+                        <input id="RNombre" name="RNombre" class="element text large" type="text" size="90" maxlength="989546" value="" />
                     </div>
 
                     <label class="description" for="element_2">Escriba el concepto a agregar</label>
@@ -31,11 +31,17 @@
                         <textarea id="textoSalida" name="textoSalida" cols="90"></textarea>
                     </div>
 
+                    <p>
 
-                    <input type="hidden" name="form_id" value="58909" />
-                    <button type="button" class="btn btn-primary" onclick="Glosario('Usuarios/Rewrite')">Procesar</button>
 
-                </form>
+                        <input type="hidden" name="form_id" value="58909" />
+                        <button type="button" class="btn btn-primary" onclick="Glosario('Rewrite')">Procesar</button>
+
+                        <input type="hidden" name="form_id" value="58909" />
+                        <button type="button" class="btn btn-primary" onclick="PDF('PDF')">Generar PDF</button>
+                    </p>
+
+</form>
             </div>
         </div>
 

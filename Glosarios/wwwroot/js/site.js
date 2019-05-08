@@ -1,6 +1,6 @@
 ﻿function Glosario(action) {
     var strText = document.getElementById("texto").value;
-    var strLanguage = "Espanol";
+    var strLanguage = "Español";
     $.ajax({
         type: "POST",
         url: action,
@@ -67,6 +67,32 @@ function Loguear(action) {
                 alert("No se puede iniciar sesion verifique sus datos");
             }
         }
+    });
+}
+var strTopic = "";
+var strLanguage = "";
+function PDF(action) {
+    strTopic = document.getElementById("RNombre").value;
+    strLanguage = "Español";
+    var strText = document.getElementById("textoSalida").value;
+    if (strText == "") {
+        alert("Genere el resumen primero");
+        return;
+    }
+    $.ajax({
+        type: "POST",
+        url: action,
+        data: {
+            strTopic,
+            strLanguage,
+            strText
+        },
+        success: function () {
+            if (true) {
+
+            }
+        }
+
     });
 }
 
