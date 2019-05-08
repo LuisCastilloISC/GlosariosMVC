@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Glosarios.Data;
 using Glosarios.Models;
 using ListedMnemonicSummaries;
+using Tesseract;
 
 
 namespace Glosarios.Controllers
@@ -170,13 +171,13 @@ namespace Glosarios.Controllers
             }
             return strRewrited;
         }
-        public  string Polish(string strText)
+        public string Polish(string strText)
         {
             string strRewrited = strText.Replace("  ", " ");
             strRewrited = strRewrited.Trim();
             return ConvertForCapitalization(strRewrited, '.'); ;
         }
-        public  List<string> CapitalizeSentences(List<string> cSentences)
+        public List<string> CapitalizeSentences(List<string> cSentences)
         {
             List<string> capitalizedSentences = new List<string>();
             foreach (string strString in cSentences)
@@ -230,11 +231,34 @@ namespace Glosarios.Controllers
             }
             return strRewrited;
         }
+        private static TesseractEngine _engine;
+        private static TesseractEngine Engine
+        {
+            get
+            {
+                if (_engine == null || _engine.IsDisposed)
+                {
+                    _engine = new TesseractEngine($@"C:\wamp\www\MVC glosarios\GlosariosMVC\Glosarios\tessdata", "spa",EngineMode.TesseractOnly);
+
+                }
+                return _engine;
+            }
+        }
+        public string ReconocerTexto()
+        {
+            string ocrResult="";           
+            string imageFilePath = @"C:\Users\arman\Desktop\1.PNG";
+            var pix = Pix.LoadFromFile(imageFilePath);
+            var page = Engine.Process(pix);
+            ocrResult = page.GetText();
+            Engine.Dispose();
+            return ocrResult;
+        }
 
     }
-    //LanguajeFileManager
-    
+
 }
+
  
 
 

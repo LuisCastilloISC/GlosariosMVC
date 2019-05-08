@@ -7,9 +7,11 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App"  />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
     
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" PrivateAssets="All" />
+    
+    <PackageReference Include="Tesseract" Version="3.3.0" />
   </ItemGroup>
 
  
@@ -20,6 +22,7 @@
 
   <ItemGroup>
     <Folder Include="ClasesPablo\ListedMnemonicSummaries\bin\Release\" />
+    <Folder Include="tessdata\" />
   </ItemGroup>
 
 </Project>
