@@ -22,7 +22,7 @@ namespace Glosarios.Controllers
         UserManager<ApplicationUser> _userManager;
         SignInManager<ApplicationUser> _signInManager;
         ApplicationUser miUsuario;
-        public static string  NickOn ="";
+        public static string NickOn = "";
 
         public UsuariosController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
@@ -54,13 +54,13 @@ namespace Glosarios.Controllers
                 var sql = @"select NickName from AspNetUsers Where Email= '" + miUsuario.Email + "' AND Password ='" + miUsuario.Password + "'";
                 SqlCommand cmd = new SqlCommand(sql, conexion);
                 SqlDataReader rd = cmd.ExecuteReader();
-                if(rd.Read())
+                if (rd.Read())
                 {
                     nickname = rd[0].ToString();
                     NickOn = nickname;
                 }
             }
-            
+
             return nickname;
 
         }
@@ -80,8 +80,6 @@ namespace Glosarios.Controllers
              string CApellidoPat, string CApellidoMat,
              string CNickname, string CPassword)
         {
-
-
             miUsuario = new ApplicationUser
             {
                 Email = CCorreo,
@@ -90,9 +88,21 @@ namespace Glosarios.Controllers
                 ApellidoMaterno = CApellidoMat,
                 NickName = CNickname,
                 UserName = CNickname,
-                Password = CPassword
+                Password = CPassword,
+
+
+
             };
             var resp = "";
+            resp = validar(miUsuario);
+            if(resp.Contains('@'))
+            {
+                return resp;
+            }
+            if(resp!="")
+            {
+                return resp;
+            }
             var result = await _userManager.CreateAsync(miUsuario, miUsuario.Password);
             if (result.Succeeded)
             {
@@ -103,9 +113,35 @@ namespace Glosarios.Controllers
                 resp = "NoSave";
             }
             return resp;
-
         }
+        public string validar(ApplicationUser usuario)
+        {
+            SqlConnection conexion = new SqlConnection("Data Source=CASTILLOW10\\KINGBRADLEY;Database=Glosarios;Trusted_Connection=True;MultipleActiveResultSets=true");
+            using (conexion)
+            {
+                conexion.Open();
+                var sql = @"select NickName from AspNetUsers Where NickName= '" + usuario.NickName + "'";
+                SqlCommand cmd = new SqlCommand(sql, conexion);
+                SqlDataReader rd = cmd.ExecuteReader();
+                if (rd.Read())
+                {
+                   return rd[0].ToString();
+                    
+                }
+                else
+                {
+                    sql = @"select Email from AspNetUsers Where Email= '" + usuario.Email + "'";
+                    cmd = new SqlCommand(sql, conexion);
+                   rd = cmd.ExecuteReader();
+                    if (rd.Read())
+                    {
+                        return  rd[0].ToString();
 
+                    }
+                }
+            }
+            return "";
+        }
         //Rewriter
         public string Rewrite(string strText, string strLanguage,string strConcepto)
         {

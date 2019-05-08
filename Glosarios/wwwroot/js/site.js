@@ -48,11 +48,22 @@ function CrearUsuario(action) {
             CCorreo, CNombre, CApellidoPat, CApellidoMat, CNickname, CPassword
         },
         success: function (response) {
+
+            if (response)
+            {
+                alert("Correo existente el correo");
+                return;
+            }
+            if (response === "Nickname") {
+                alert("Nickname existente");
+                return;
+            }
             if (response === "Save") {
-                window.location.href = "Loguin";
+                window.location.href = "Login";
             }
             else {
                 alert("No se puede agregar el usuario");
+                return;
             }
         }
     });

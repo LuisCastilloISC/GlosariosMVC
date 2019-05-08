@@ -27,6 +27,6 @@ namespace Glosarios.Models
         [StringLength(50, MinimumLength = 3, ErrorMessage = "El nombre debe tener entre 3 y 50 caracteres")]
         public string Password { get; set; }
         public bool status { get; set; }
-        public bool Succeeded { get; internal set; }
+        
     }
 }

@@ -1,0 +1,6 @@
+Diseñador de Glosarios Mnemotécnicos, 2019.
+Fecha: 2019-05-08
+Autor: siul_
+Tema: PRUEBA
+
+PORTABILIDAD.Puede exportar texto procesado siguientes maneras: texto plano portapapeles, archivo txt, documento PDF. 
