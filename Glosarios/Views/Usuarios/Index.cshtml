@@ -1,0 +1,317 @@
+@model IEnumerable<Glosarios.Models.ApplicationUser>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<section class="home_banner_area" style="
+    width: 1349px;
+">
+    <div class="banner_inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="banner_content">
+                        <h2>
+                            Facilitamos la tarea
+                            de resumir y <br>condensar informaci&oacute;n
+                        </h2>
+                        <p>
+                            Resumir y comprimir conceptos nunca fue tan sencillo
+                            no hay nada mejor que la sensaci&oacute;n de un trabajo bien hecho
+
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="feature_area">
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-lg-4" style="
+    margin-left: 900px;
+">
+                <div class="single_feature d-flex flex-row pb-30">
+                    <div class="icon">
+                        <span class="lnr lnr-book"></span>
+                    </div>
+                    <div class="desc">
+                        <h4>Resumenes</h4>
+                        <p>
+                            Disminuir el tama&ntilde;o de un texto sin perder el mensaje que trata comunicar.
+
+                        </p>
+                    </div>
+                </div>
+                <div class="single_feature d-flex flex-row pb-30">
+                    <div class="icon">
+                        <span class="fa fa-trophy"></span>
+                    </div>
+                    <div class="desc">
+                        <h4>Reducci&oacute;n extrema</h4>
+                        <p>
+                            Al resumir se omiten palabras que sean innecesarias para el entendimiento general de la oraci&oacute;n, sin importar que se pierda la sintaxis del idioma.
+                        </p>
+                    </div>
+                </div>
+                <div class="single_feature d-flex flex-row">
+                    <div class="icon">
+                        <span class="lnr lnr-screen"></span>
+                    </div>
+                    <div class="desc">
+                        <h4>Portabilidad</h4>
+                        <p>
+                            Se puede exportar el texto procesado de las siguientes maneras: texto plano en portapapeles, archivo txt, documento PDF.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@*<table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.idUsuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApellidoMaterno)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApellidoPaterno)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NickName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Password)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NormalizedUserName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NormalizedEmail)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EmailConfirmed)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PasswordHash)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SecurityStamp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ConcurrencyStamp)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TwoFactorEnabled)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LockoutEnd)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LockoutEnabled)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AccessFailedCount)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idUsuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApellidoMaterno)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApellidoPaterno)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NickName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Password)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NormalizedUserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NormalizedEmail)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmailConfirmed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PasswordHash)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SecurityStamp)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ConcurrencyStamp)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TwoFactorEnabled)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LockoutEnd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LockoutEnabled)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AccessFailedCount)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@
+
+
+<div class="department_area section_gap" style="
+    padding-top: 0px;">
+
+    <div class="content" style="
+    margin-left: 100px;
+">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+
+                <label class="description" for="element_1" style="font-size:20px">Nombre del glosario</label>
+                <div>
+                    <input id="element_1" name="element_1" class="element text large" type="text" size="70" maxlength="989546" value="" />
+                </div>
+                <br />
+                <br/>
+          
+                <!-- Tab links -->
+                <div class="tab" style=" width: 1122px;">
+                    <button class="tablinks" onclick="openCity(event, 'Ingresar texto')">Texto a texto</button>
+                    <button class="tablinks" onclick="openCity(event, 'Imagen')">Imagen a texto</button>
+                    <!--  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>-->
+                </div>
+
+                <!-- Tab content -->
+                <div id="Ingresar texto" class="tabcontent" style="display: block;width: 1122px; ">
+
+                
+                    <form id="form_58909" class="appnitro" method="post" action="">
+                        <div class="form_description">
+
+
+                        </div>
+                        <label class="description" style="font-size:20px" for="element_2">Escriba el concepto a agregar</label>
+                        <div>
+                            <input id="element_2" name="element_2" class="element text large" type="text" size="70" maxlength="989546" value="" />
+                        </div>
+
+
+
+
+                        <label class="description" for="element_3">Entrada</label>
+                        <div>
+                            <textarea id="texto" name="texto" cols="134" rows="8"></textarea>
+                        </div>
+                        <label class="description" for="element_3">Salida </label>
+                        <div>
+                            <textarea id="textoSalida" name="textoSalida" cols="134" rows="8"></textarea>
+                        </div>
+
+
+                        <input type="hidden" name="form_id" value="58909" />
+                        <button type="button" class="btn btn-primary" onclick="Glosario('Usuarios/Rewrite')">Procesar</button>
+                    </form>
+                </div>
+
+                <div id="Imagen" class="tabcontent" style="width: 1122px;">
+
+                    <picture>
+
+                        <img src="~/img/1.PNG" alt="Flowers" style="width:900px">
+                    </picture>
+                    <input id="uploadImageButton" data-l10n-id="fileToolbar_uploadImageFile_icon" type="button" class="btn btn-success" title="Upload Image File" value="Upload Image File" name="UploadImageFile" onclick="document.getElementById('uploadImageFile').click();" style="cursor: pointer;" />
+                    <input id="uploadImageFile" data-l10n-id="fileToolbar_uploadImageFile_icon" type="file" title="Upload Image File" name="UploadImageFile" style="display:none" />
+                    <input type="button" id="recognizeTextButton" onclick="Reconocer('Usuarios/ReconocerTexto')" value="Recognize Text" style="width:100%;" />
+                    <div>
+                        <textarea id="textoImagen" name="textoImagen" cols="134" rows="8"></textarea>
+                    </div>
+                    <label class="description" for="element_3">Salida </label>
+                    <div>
+                        <textarea id="textoSalida" name="textoSalida" cols="134" rows="8"></textarea>
+                    </div>
+                    <input type="hidden" name="form_id" value="58909" />
+                    <button type="button" class="btn btn-primary" onclick="Glosario('Usuarios/Rewrite')">Procesar</button>
+
+
+                </div>
+
+                <!--<div id="Tokyo" class="tabcontent">
+                    <h3>Tokyo</h3>
+                    <p>Tokyo is the capital of Japan.</p>
+                </div>-->
+
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

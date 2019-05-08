@@ -184,6 +184,29 @@ namespace Glosarios.Controllers
             }
             return strRewrited;
         }
+        private static TesseractEngine _engine;
+        private static TesseractEngine Engine
+        {
+            get
+            {
+                if (_engine == null || _engine.IsDisposed)
+                {
+                    _engine = new TesseractEngine($@"C:\wamp\www\MVC glosarios\GlosariosMVC\Glosarios\tessdata", "spa",EngineMode.TesseractOnly);
+
+                }
+                return _engine;
+            }
+        }
+        public string ReconocerTexto()
+        {
+            string ocrResult="";           
+            string imageFilePath = @"C:\Users\arman\Desktop\1.PNG";
+            var pix = Pix.LoadFromFile(imageFilePath);
+            var page = Engine.Process(pix);
+            ocrResult = page.GetText();
+            Engine.Dispose();
+            return ocrResult;
+        }
 
     
 
