@@ -19,12 +19,33 @@
     });
 
 }
-function Reconocer(action) {
-
+function GlosarioImagen(action) {
+    var strText = document.getElementById("textoImagen").value;
+    var strLanguage = "Espanol";
     $.ajax({
         type: "POST",
         url: action,
-        data: { },
+        data: {
+            strText, strLanguage
+        },
+        success: function (response) {
+            if (response != "") {
+                document.getElementById("textoSalidaImagen").value = response;
+
+            }
+            else {
+                $('#textoSalida').value = "Error";
+            }
+        }
+    });
+
+}
+function Reconocer(action) {
+    CargarImagen("Usuarios/SubirImagen");
+    $.ajax({
+        type: "POST",
+        url: action,
+        data: {},
         success: function (response) {
             if (response != "") {
                 document.getElementById("textoImagen").value = response;
@@ -56,4 +77,19 @@ function openCity(evt, cityName) {
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
+}
+
+function CargarImagen(action) {
+    var file = document.getElementById('file1').value;
+    $.ajax({
+        type: "POST",
+        url: action,
+        data: { file },
+        success: function (response) {
+                
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert('error');
+        }
+    });
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Glosarios.Data;
 using Glosarios.Models;
+using Microsoft.AspNetCore.Http;
 using ListedMnemonicSummaries;
 using Tesseract;
 
@@ -19,6 +20,7 @@ namespace Glosarios.Controllers
 
         public UsuariosController(ApplicationDbContext context)
         {
+            
             _context = context;
         }
 
@@ -244,10 +246,22 @@ namespace Glosarios.Controllers
                 return _engine;
             }
         }
+ 
+        public static string nombre = "";
+        public string SubirImagen(string file)
+        {
+            string[] separar = file.Split("\\");
+            string ruta = "/Imagenes/";
+            ruta += separar[2];
+            nombre = separar[2];
+            ViewBag.Image = ruta;
+            return ruta;
+
+        }
         public string ReconocerTexto()
         {
-            string ocrResult="";           
-            string imageFilePath = @"C:\Users\arman\Desktop\1.PNG";
+            string ocrResult = "";
+            string imageFilePath = @"C:\wamp\www\GlosariosMVC\GlosariosMVC\Glosarios\wwwroot\Imagenes\" + nombre;
             var pix = Pix.LoadFromFile(imageFilePath);
             var page = Engine.Process(pix);
             ocrResult = page.GetText();
