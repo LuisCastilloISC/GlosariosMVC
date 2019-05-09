@@ -4,7 +4,7 @@ function Glosario(action) {
     $.ajax({
         type: "POST",
         url: action,
-        data{
+        data:{
             strText, strLanguage
         },
         success: function (response) {

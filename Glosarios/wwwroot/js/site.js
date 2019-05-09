@@ -88,6 +88,38 @@ function Loguear(action) {
         }
     });
 }
+function Reconocer(action) {
+    CargarImagen("Usuarios/SubirImagen");
+    $.ajax({
+        type: "POST",
+        url: action,
+        data: {},
+        success: function (response) {
+            if (response != "") {
+                document.getElementById("textoImagen").value = response;
+
+            }
+            else {
+                $('#textoImagen').value = "Error";
+            }
+        }
+    });
+
+}
+function CargarImagen(action) {
+    var file = document.getElementById('file1').value;
+    $.ajax({
+        type: "POST",
+        url: action,
+        data: { file },
+        success: function (response) {
+
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            alert('error');
+        }
+    });
+}
 var strTopic = "";
 var strLanguage = "";
 function PDF(action) {

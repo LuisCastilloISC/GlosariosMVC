@@ -68,6 +68,10 @@ namespace Glosarios.Controllers
         {
             return View();
         }
+        public IActionResult LogOn()
+        {
+            return View();
+        }
         public IActionResult Resumenes()
         {
             return View();
@@ -228,16 +232,18 @@ namespace Glosarios.Controllers
             {
                 if (_engine == null || _engine.IsDisposed)
                 {
-                    _engine = new TesseractEngine($@"C:\wamp\www\MVC glosarios\GlosariosMVC\Glosarios\tessdata", "spa",EngineMode.TesseractOnly);
+                    _engine = new TesseractEngine($@"C:\Users\siul_\source\repos\Glosarios\Glosarios\tessdata", "spa",EngineMode.TesseractOnly);
 
                 }
                 return _engine;
             }
         }
+        public static string nombre = "";
+ 
         public string ReconocerTexto()
         {
-            string ocrResult="";           
-            string imageFilePath = @"C:\Users\arman\Desktop\1.PNG";
+            string ocrResult = "";
+            string imageFilePath = @"C:\Users\siul_\source\repos\Glosarios\Glosarios\wwwroot\" + nombre;
             var pix = Pix.LoadFromFile(imageFilePath);
             var page = Engine.Process(pix);
             ocrResult = page.GetText();
@@ -245,10 +251,10 @@ namespace Glosarios.Controllers
             return ocrResult;
         }
 
-    
 
-    //PDF
-    public  void PDF(string strTopic,string strLanguage,string strText)
+
+        //PDF
+        public  void PDF(string strTopic,string strLanguage,string strText)
         {
            
             string strTXTDirectory = "";

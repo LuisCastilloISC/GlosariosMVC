@@ -18,15 +18,15 @@
     margin: 100px;
     padding: 100px;
     position: absolute;
-    top: 120px;
+    top: 80px;
     right: 630px;
     width: 500px;
     border-width: 7px;
-    border-top-style: outset;
-    border-right-style: outset;
-    border-bottom-style: outset;
-    border-left-style: outset;
     font-size: 30px;
     font-family: Nunito, sans-serif;
+    background-color:white;
+    border-radius: 3px;
+    box-shadow: 0px 4px 24px rgba(0,0,0,0.1);
+
 }
 

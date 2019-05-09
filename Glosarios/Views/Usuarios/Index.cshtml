@@ -284,13 +284,9 @@
 
                 <div id="Imagen" class="tabcontent" style="width: 1122px;">
 
-                    <picture>
-
-                        <img src="~/img/1.PNG" alt="Flowers" style="width:900px">
-                    </picture>
-                    <input id="uploadImageButton" data-l10n-id="fileToolbar_uploadImageFile_icon" type="button" class="btn btn-success" title="Upload Image File" value="Upload Image File" name="UploadImageFile" onclick="document.getElementById('uploadImageFile').click();" style="cursor: pointer;" />
-                    <input id="uploadImageFile" data-l10n-id="fileToolbar_uploadImageFile_icon" type="file" title="Upload Image File" name="UploadImageFile" style="display:none" />
-                    <input type="button" id="recognizeTextButton" onclick="Reconocer('Usuarios/ReconocerTexto')" value="Recognize Text" style="width:100%;" />
+                  
+                    <input id="file1" type="file"  value="Ingresar imagen" />
+                    <input type="button" id="recognizeTextButton" class=" btn btn-success" onclick="Reconocer('Usuarios/ReconocerTexto')" value="Interpretar texto de imagen" />
                     <div>
                         <textarea id="textoImagen" name="textoImagen" cols="134" rows="8"></textarea>
                     </div>
