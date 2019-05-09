@@ -138,33 +138,27 @@
                         </p>
                     </form>
                 </div>
+                <div id="Imagen" class="tabcontent" style="width: 1122px;">
 
-                <div id="Imagen" class="tabcontent" style="width: 1600px;">
-
-                    <picture>
-
-                        <img src="~/img/1.PNG" alt="Flowers" style="width:1300px">
-                    </picture>
-                    <input id="uploadImageButton" data-l10n-id="fileToolbar_uploadImageFile_icon" type="button" class="btn btn-success" title="Upload Image File" value="Upload Image File" name="UploadImageFile" onclick="document.getElementById('uploadImageFile').click();" style="cursor: pointer;" />
-                    <input id="uploadImageFile" data-l10n-id="fileToolbar_uploadImageFile_icon" type="file" title="Upload Image File" name="UploadImageFile" style="display:none" />
-                    <input type="button" id="recognizeTextButton" onclick="Reconocer('Usuarios/ReconocerTexto')" value="Recognize Text" style="width:100%;" />
+                    <input id="file1" type="file" class=" input-sm" value="Ingresar imagen" />
+                    <input type="button" id="recognizeTextButton" class=" btn btn-success" onclick="Reconocer('Usuarios/ReconocerTexto')" value="Interpretar texto de imagen" />
                     <div>
                         <textarea id="textoImagen" name="textoImagen" cols="134" rows="8"></textarea>
                     </div>
                     <label class="description" for="element_3">Salida </label>
                     <div>
-                        <textarea id="textoSalida" name="textoSalida" cols="134" rows="8"></textarea>
+                        <textarea id="textoSalidaImagen" name="textoSalidaImagen" cols="134" rows="8"></textarea>
                     </div>
-                    <input type="hidden" name="form_id" value="58909" />
-                    <button type="button" class="btn btn-primary" onclick="Glosario('Usuarios/Rewrite')">Procesar</button>
+                    <input type="hidden" class="btn-success" name="form_id" value="58909" />
+                    <button type="button" class="btn btn-primary" onclick="GlosarioImagen('Usuarios/Rewrite')">Procesar</button>
 
 
                 </div>
 
                 <!--<div id="Tokyo" class="tabcontent">
-                    <h3>Tokyo</h3>
-                    <p>Tokyo is the capital of Japan.</p>
-                </div>-->
+        <h3>Tokyo</h3>
+        <p>Tokyo is the capital of Japan.</p>
+    </div>-->
 
 
 

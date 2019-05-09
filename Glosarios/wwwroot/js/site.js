@@ -170,21 +170,3 @@ function openCity(evt, cityName) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 }
-function Reconocer(action) {
-
-    $.ajax({
-        type: "POST",
-        url: action,
-        data: {},
-        success: function (response) {
-            if (response != "") {
-                document.getElementById("textoImagen").value = response;
-
-            }
-            else {
-                $('#textoImagen').value = "Error";
-            }
-        }
-    });
-
-}
