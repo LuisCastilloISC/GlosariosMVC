@@ -10,9 +10,9 @@
 {
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
-            <li>
+            <li style="font-size:30px; font-family: Nunito, sans-serif; position:relative;right:-200px;">
                 <a asp-area="" title="Manage">@UsuariosController.NickOn</a>
-            </li>
+            </li ;>
            
         </ul>
     </form>
@@ -20,7 +20,8 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a asp-area="" asp-controller="Usuarios" asp-action="Crear">Registrarse</a></li>
-        <li><a asp-area="" asp-controller="usuarios" asp-action="Login">Iniciar Sesion</a></li>
+        <li style="font-size:30px; font-family: Nunito, sans-serif; position:relative;right:-180px;color:#000000;">
+           <a asp-area="" asp-controller="Usuarios" asp-action="Crear">Registrarse</a></li>
+        <li style="font-size:30px; font-family: Nunito, sans-serif; position:relative;right:-180px;color:#FFFFFF"><a asp-area="" asp-controller="usuarios" asp-action="Login">Iniciar Sesion</a></li>
     </ul>
 }

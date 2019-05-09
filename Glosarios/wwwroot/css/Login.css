@@ -1,0 +1,32 @@
+﻿
+
+#LCorreo, #LPassword {
+    width: 300px;
+    position: center;
+    font: 1em arial, helvetica, sans-serif;
+    color: black;
+    font-size: 30px;
+    font-family: Nunito, sans-serif;
+}
+#lblPassword, #lblCorreo {
+    color: black;
+    position: center;
+    font-size: 30px;
+    font-family: Nunito, sans-serif;
+}
+#frmLogin {
+    margin: 100px;
+    padding: 100px;
+    position: absolute;
+    top: 120px;
+    right: 630px;
+    width: 500px;
+    border-width: 7px;
+    border-top-style: outset;
+    border-right-style: outset;
+    border-bottom-style: outset;
+    border-left-style: outset;
+    font-size: 30px;
+    font-family: Nunito, sans-serif;
+}
+

@@ -1,0 +1,33 @@
+﻿
+#CCorreo, #CPassword,#CNombre,#CApellidoPat,#CApellidoMat,#CNickname {
+    width: 300px;
+    position: center;
+    font: 1em arial, helvetica, sans-serif;
+    color: black;
+    font-size: 20px;
+    font-family: Nunito, sans-serif;
+}
+
+#lblPass, #lblCorreo ,#lblNick,#lblApp,#lblApm,#lblNombre{
+    color: black;
+    position: center;
+    font-size: 20px;
+    font-family: Nunito, sans-serif;
+}
+
+#frmCrear {
+    margin: 80px;
+    padding: 80px;
+    position: absolute;
+    top: 80px;
+    right: 630px;
+    width: 500px;
+    border-width: 7px;
+    border-top-style: outset;
+    border-right-style: outset;
+    border-bottom-style: outset;
+    border-left-style: outset;
+    font-size: 20px;
+    font-family: Nunito, sans-serif;
+}body {
+}
