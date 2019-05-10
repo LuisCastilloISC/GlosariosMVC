@@ -6,12 +6,16 @@
     font: 1em arial, helvetica, sans-serif;
     color: black;
     font-size: 30px;
+    border-radius: 3px;
+    box-shadow: 0px 4px 24px rgba(0,0,0,0.1);
     font-family: Nunito, sans-serif;
 }
 #lblPassword, #lblCorreo {
     color: black;
     position: center;
     font-size: 30px;
+    border-radius: 1px;
+    box-shadow: 0px 0px 1px rgba(0,0,0,0.1);
     font-family: Nunito, sans-serif;
 }
 #frmLogin {
@@ -19,7 +23,7 @@
     padding: 100px;
     position: absolute;
     top: 80px;
-    right: 630px;
+    right: 580px;
     width: 500px;
     border-width: 7px;
     font-size: 30px;

@@ -80,6 +80,10 @@ namespace Glosarios.Controllers
         {
             return View();
         }
+        public IActionResult Vista()
+        {
+            return View();
+        }
         public async Task<String> CrearUsuario(string CCorreo, string CNombre,
              string CApellidoPat, string CApellidoMat,
              string CNickname, string CPassword)

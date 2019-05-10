@@ -125,6 +125,7 @@ var strLanguage = "";
 function PDF(action) {
     strTopic = document.getElementById("RNombre").value;
     strLanguage = "Español";
+    "file:///C:/Users/siul_/source/repos/Glosarios/Glosarios/"
     var strText = document.getElementById("textoSalida").value;
     if (strTopic == "") {
         alert("El glosario debe tener un nombre");
@@ -144,7 +145,7 @@ function PDF(action) {
         },
         success: function () {
             if (true) {
-
+                window.open("C:/Users/siul_/source/repos/Glosarios/Glosarios/" + strTopic+".pdf","_blank");              
             }
         }
 

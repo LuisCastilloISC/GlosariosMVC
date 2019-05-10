@@ -1,48 +1,159 @@
 ﻿
-@model Glosarios.Models.Usuario
-
 @{
-    ViewData["Title"] = "Crear";
+    Layout = null;
+
 }
-<link type="text/css" rel="stylesheet" href="https://localhost:44381/css/Registrar.css" />
-<h4>Crea tu usuario</h4>
-        <form id="frmCrear">
-            <div class="form-group">
-                <label for="CCorreo" id="lblCorreo" class="control-label">Correo</label>
-                <input name="CCorreo" id="CCorreo" class="form-control" />
-                <span asp-validation-for="Correo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label for="CNombre" id="lblNombre" class="control-label">Nombre</label>
-                <input name="CNombre" id="CNombre" class="form-control" />
-                <span asp-validation-for="Nombre" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label for="CApellidoPat" id="lblApp" class="control-label">Apellido paterno</label>
-                <input name="CApellidoPat" id="CApellidoPat" class="form-control" />
-                <span asp-validation-for="ApellidoPaterno" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label for="CApellidoMat" id="lblApm"class="control-label">Apellido materno</label>
-                <input name="CApellidoMat" id="CApellidoMat" class="form-control" />
-                <span asp-validation-for="ApellidoMaterno" class="text-danger"></span>
+@model Glosarios.Models.Usuario
+@using Microsoft.AspNetCore.Identity
+@using Glosarios.Models
+@using Glosarios.Controllers
 
-            </div>
-            <div class="form-group">
-                <label for="CNickname" id="lblNick" class="control-label">NickName</label>
-                <input name="CNickname" id="CNickname" class="form-control" />
-                <span asp-validation-for="NickName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label for="CPassword" id="lblPass" class="control-label">Password</label>
-                <input type="password" name="CPassword" id="CPassword" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+<script>var Nick</script>
+<!DOCTYPE html>
 
-            <div class="form-group">
-                <button type="button" value="Crear usuario" class="btn btn-default" onclick="CrearUsuario('CrearUsuario')">Crear cuenta</button>
+<html>
+<head>
+
+    <!-- Required meta tags -->
+
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Glosarios</title>
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <!-- Bootstrap CSS -->
+
+    <link rel="stylesheet" href="~/vendors/linericon/style.css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/vendors/lightbox/simpleLightbox.css">
+    <link rel="stylesheet" href="~/vendors/nice-select/css/nice-select.css">
+    <link rel="stylesheet" href="~/vendors/animate-css/animate.css">
+    <!-- main css -->
+    <link rel="stylesheet" href="~/css/style.css">
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+    <header class="header_area">
+        <div class="main_menu">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand" style="font-size:30px; font-family: Nunito, sans-serif; position:relative;right:100px;">Glosarios Mnemotecnicos</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav"></ul>
+                        @await Html.PartialAsync("_LoginPartial")
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container body-content" style="
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0px;
+    padding-right: 0px;">
+
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-K+ctZQ+LL8q6tP7I94W+qzQsfRV2a+AfHIi9k8z8l9ggpc8X+Ytst4yBo/hH+8Fk">
+        </script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+        <script src="~/js/jquery-3.2.1.min.js"></script>
+        <script src="~/js/popper.js"></script>
+        <script src="~/js/bootstrap.min.js"></script>
+        <script src="~/js/stellar.js"></script>
+        <script src="~/js/countdown.js"></script>
+        <script src="~/vendors/nice-select/js/jquery.nice-select.min.js"></script>
+        <script src="~/vendors/owl-carousel/owl.carousel.min.js"></script>
+        <script src="~/js/owl-carousel-thumb.min.js"></script>
+        <script src="~/js/jquery.ajaxchimp.min.js"></script>
+        <script src="~/vendors/counter-up/jquery.counterup.js"></script>
+        <script src="~/js/mail-script.js"></script>
+        <!--gmaps Js-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+        <script src="js/gmaps.min.js"></script>
+        <script src="js/theme.js"></script>
+    </environment>
+</head>
+<body style="background-repeat:no-repeat;background-size:cover;background-image: url(@Url.Content("~/Images/FRegistro.jpg"))">
+    <link type="text/css" rel="stylesheet" href="https://localhost:44381/css/Registrar.css" />
+    
+    <form id="frmCrear">
+        <div>
+        <h4 style="font-size:30px;color:black; font-family: Nunito, sans-serif; position:relative;top:-20px;right:-40px;">Crea tu usuario</h4>
             </div>
-        </form>
+        <div class="form-group">
+            <label for="CCorreo" id="lblCorreo" class="control-label">Correo</label>
+            <input name="CCorreo" id="CCorreo" class="form-control" />
+            <span asp-validation-for="Correo" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="CNombre" id="lblNombre" class="control-label">Nombre</label>
+            <input name="CNombre" id="CNombre" class="form-control" />
+            <span asp-validation-for="Nombre" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="CApellidoPat" id="lblApp" class="control-label">Apellido paterno</label>
+            <input name="CApellidoPat" id="CApellidoPat" class="form-control" />
+            <span asp-validation-for="ApellidoPaterno" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="CApellidoMat" id="lblApm" class="control-label">Apellido materno</label>
+            <input name="CApellidoMat" id="CApellidoMat" class="form-control" />
+            <span asp-validation-for="ApellidoMaterno" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label for="CNickname" id="lblNick" class="control-label">NickName</label>
+            <input name="CNickname" id="CNickname" class="form-control" />
+            <span asp-validation-for="NickName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="CPassword" id="lblPass" class="control-label">Password</label>
+            <input type="password" name="CPassword" id="CPassword" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <button type="button" value="Crear usuario" class="btn btn-default" onclick="CrearUsuario('CrearUsuario')" style="font-size:30px; font-family: Nunito, sans-serif;position:relative;right:-45px;">Crear cuenta</button>
+        </div>
+    </form>
+</body>
 
 
 
