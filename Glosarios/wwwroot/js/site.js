@@ -32,6 +32,7 @@ var CApellidoPat;
 var CApellidoMat;
 var CNickname;
 var CPassword;
+var CCPassword
 var CCorreo;
 var NicknameLogueado;
 function CrearUsuario(action) {
@@ -41,32 +42,38 @@ function CrearUsuario(action) {
     CApellidoMat = document.getElementById("CApellidoMat").value;
     CNickname = document.getElementById("CNickname").value;
     CPassword = document.getElementById("CPassword").value;
-    $.ajax({
-        type: "POST",
-        url: action,
-        data: {
-            CCorreo, CNombre, CApellidoPat, CApellidoMat, CNickname, CPassword
-        },
-        success: function (response) {
+    CCPassword = document.getElementById("CCPassword").value;
+    if (CCPassword != CPassword) {
+        alert("Las contraseñas no coinciden");
+        return;
+    }
+    else {
+        $.ajax({
+            type: "POST",
+            url: action,
+            data: {
+                CCorreo, CNombre, CApellidoPat, CApellidoMat, CNickname, CPassword
+            },
+            success: function (response) {
 
-            if (response)
-            {
-                alert("Correo existente el correo");
-                return;
+                if (response === "Correo") {
+                    alert("Correo con cuenta registrada");
+                    return;
+                }
+                if (response === "Nickname") {
+                    alert("Nickname existente");
+                    return;
+                }
+                if (response === "Save") {
+                    window.location.href = "LogOn";
+                }
+                else {
+                    alert("Se han detectado los siguientes errores\n" + response);
+                    return;
+                }
             }
-            if (response === "Nickname") {
-                alert("Nickname existente");
-                return;
-            }
-            if (response === "Save") {
-                window.location.href = "Login";
-            }
-            else {
-                alert("No se puede agregar el usuario");
-                return;
-            }
-        }
-    });
+        });
+    }
 }
 function Loguear(action) {
     CCorreo = document.getElementById("LCorreo").value;

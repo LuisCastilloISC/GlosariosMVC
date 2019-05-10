@@ -5,7 +5,7 @@
     position: center;
     font: 1em arial, helvetica, sans-serif;
     color: black;
-    font-size: 30px;
+    font-size: 25px;
     border-radius: 3px;
     box-shadow: 0px 4px 24px rgba(0,0,0,0.1);
     font-family: Nunito, sans-serif;
@@ -23,7 +23,7 @@
     padding: 100px;
     position: absolute;
     top: 80px;
-    right: 580px;
+    right: 600px;
     width: 500px;
     border-width: 7px;
     font-size: 30px;

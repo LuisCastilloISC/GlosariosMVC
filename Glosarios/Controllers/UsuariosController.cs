@@ -103,24 +103,26 @@ namespace Glosarios.Controllers
             };
             var resp = "";
             resp = validar(miUsuario);
-            if(resp.Contains('@'))
+            if (resp != "")
             {
-                return resp;
-            }
-            if(resp!="")
-            {
-                return resp;
-            }
-            var result = await _userManager.CreateAsync(miUsuario, miUsuario.Password);
-            if (result.Succeeded)
-            {
-                resp = "Save";
+                return "Correo";
             }
             else
             {
-                resp = "NoSave";
+                var result = await _userManager.CreateAsync(miUsuario, miUsuario.Password);
+                if (result.Succeeded)
+                {
+                    resp = "Save";
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        resp += error.Description + " \n";
+                    }
+                }
+                return resp;
             }
-            return resp;
         }
         public string validar(ApplicationUser usuario)
         {
@@ -128,26 +130,17 @@ namespace Glosarios.Controllers
             using (conexion)
             {
                 conexion.Open();
-                var sql = @"select NickName from AspNetUsers Where NickName= '" + usuario.NickName + "'";
+                var sql = "";                           
+                sql = @"select Email from AspNetUsers Where Email= '" + usuario.Email + "'";
                 SqlCommand cmd = new SqlCommand(sql, conexion);
                 SqlDataReader rd = cmd.ExecuteReader();
                 if (rd.Read())
                 {
-                   return rd[0].ToString();
-                    
-                }
-                else
-                {
-                    sql = @"select Email from AspNetUsers Where Email= '" + usuario.Email + "'";
-                    cmd = new SqlCommand(sql, conexion);
-                   rd = cmd.ExecuteReader();
-                    if (rd.Read())
-                    {
-                        return  rd[0].ToString();
+                  return  rd[0].ToString();
 
-                    }
                 }
-            }
+                }
+            
             return "";
         }
         //Rewriter
